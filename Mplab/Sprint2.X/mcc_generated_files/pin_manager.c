@@ -51,6 +51,9 @@
 
 
 
+void (*IOCAF2_InterruptHandler)(void);
+void (*IOCAF4_InterruptHandler)(void);
+
 
 void PIN_MANAGER_Initialize(void)
 {
@@ -95,15 +98,105 @@ void PIN_MANAGER_Initialize(void)
     */
     APFCON = 0x00;
 
+    /**
+    IOCx registers 
+    */
+    //interrupt on change for group IOCAF - flag
+    IOCAFbits.IOCAF2 = 0;
+    //interrupt on change for group IOCAF - flag
+    IOCAFbits.IOCAF4 = 0;
+    //interrupt on change for group IOCAN - negative
+    IOCANbits.IOCAN2 = 1;
+    //interrupt on change for group IOCAN - negative
+    IOCANbits.IOCAN4 = 1;
+    //interrupt on change for group IOCAP - positive
+    IOCAPbits.IOCAP2 = 0;
+    //interrupt on change for group IOCAP - positive
+    IOCAPbits.IOCAP4 = 0;
 
 
 
+    // register default IOC callback functions at runtime; use these methods to register a custom function
+    IOCAF2_SetInterruptHandler(IOCAF2_DefaultInterruptHandler);
+    IOCAF4_SetInterruptHandler(IOCAF4_DefaultInterruptHandler);
    
+    // Enable IOCI interrupt 
+    INTCONbits.IOCIE = 1; 
     
 }
   
 void PIN_MANAGER_IOC(void)
 {   
+	// interrupt on change for pin IOCAF2
+    if(IOCAFbits.IOCAF2 == 1)
+    {
+        IOCAF2_ISR();  
+    }	
+	// interrupt on change for pin IOCAF4
+    if(IOCAFbits.IOCAF4 == 1)
+    {
+        IOCAF4_ISR();  
+    }	
+}
+
+/**
+   IOCAF2 Interrupt Service Routine
+*/
+void IOCAF2_ISR(void) {
+
+    // Add custom IOCAF2 code
+
+    // Call the interrupt handler for the callback registered at runtime
+    if(IOCAF2_InterruptHandler)
+    {
+        IOCAF2_InterruptHandler();
+    }
+    IOCAFbits.IOCAF2 = 0;
+}
+
+/**
+  Allows selecting an interrupt handler for IOCAF2 at application runtime
+*/
+void IOCAF2_SetInterruptHandler(void (* InterruptHandler)(void)){
+    IOCAF2_InterruptHandler = InterruptHandler;
+}
+
+/**
+  Default interrupt handler for IOCAF2
+*/
+void IOCAF2_DefaultInterruptHandler(void){
+    // add your IOCAF2 interrupt custom code
+    // or set custom function using IOCAF2_SetInterruptHandler()
+}
+
+/**
+   IOCAF4 Interrupt Service Routine
+*/
+void IOCAF4_ISR(void) {
+
+    // Add custom IOCAF4 code
+
+    // Call the interrupt handler for the callback registered at runtime
+    if(IOCAF4_InterruptHandler)
+    {
+        IOCAF4_InterruptHandler();
+    }
+    IOCAFbits.IOCAF4 = 0;
+}
+
+/**
+  Allows selecting an interrupt handler for IOCAF4 at application runtime
+*/
+void IOCAF4_SetInterruptHandler(void (* InterruptHandler)(void)){
+    IOCAF4_InterruptHandler = InterruptHandler;
+}
+
+/**
+  Default interrupt handler for IOCAF4
+*/
+void IOCAF4_DefaultInterruptHandler(void){
+    // add your IOCAF4 interrupt custom code
+    // or set custom function using IOCAF4_SetInterruptHandler()
 }
 
 /**
