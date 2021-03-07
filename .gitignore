@@ -1,4 +1,6 @@
 Mplab/Sprint2.X/build/
-Mplab/Sprin2.X/dist/
+Mplab/Sprint2.X/dist/
 Mplab/Sprint2.X/nbproject/Makefile-*
 Mplab/Sprint2.X/nbproject/Package-*
+Proteus/*.pdsbak
+Proteus/*.workspace
