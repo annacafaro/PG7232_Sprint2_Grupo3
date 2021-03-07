@@ -56,7 +56,7 @@ void __interrupt() INTERRUPT_InterruptManager (void)
     {
         PIN_MANAGER_IOC();
         
-        IO_RA5_Toggle();
+        IO_RA1_Toggle();
         
         INTCONbits.IOCIF = 0;
     }

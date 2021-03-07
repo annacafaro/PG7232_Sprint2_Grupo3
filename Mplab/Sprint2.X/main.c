@@ -67,14 +67,14 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-    unsigned int resultado;
+    adc_result_t resultado;
     
     while (1)
     {
         // Add your application code
         ADC1_Initialize();
         resultado = ADC1_GetConversion(channel_AN0);
-        if (resultado < 512) {
+        if (resultado < 0x200) {
             IO_RA5_SetHigh();
         } else {
             IO_RA5_SetLow();
