@@ -1,35 +1,4 @@
-# Created by https://www.toptal.com/developers/gitignore/api/mplabx
-# Edit at https://www.toptal.com/developers/gitignore?templates=mplabx
-
-### MPLabX ###
-#Ignore List for Microchips MPLabX IDE
-#Form of netbeans with vendor specific changes
-#Taken from zeha on GIST https://gist.github.com/zeha/5999375
-
-# .generated_files directory
-*.generated_files directory
-
-*.d
-*.pre
-*.p1
-*.lst
-*.sym
-*.obj
-*.o
-*.sdb
-*.obj.dmp
-html/
-nbproject/private/
-nbproject/Package-*.bash
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
-funclist
-nbproject/Makefile-*
-disassembly/
-*.map
-
-# End of https://www.toptal.com/developers/gitignore/api/mplabx
+Mplab/Sprint2.X/build/
+Mplab/Sprin2.X/dist/
+Mplab/Sprint2.X/nbproject/Makefile-*
+Mplab/Sprint2.X/nbproject/Package-*
