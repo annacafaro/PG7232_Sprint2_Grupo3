@@ -145,7 +145,7 @@ void PIN_MANAGER_IOC(void)
 void IOCAF2_ISR(void) {
 
     // Add custom IOCAF2 code
-
+    IO_RA1_Toggle();
     // Call the interrupt handler for the callback registered at runtime
     if(IOCAF2_InterruptHandler)
     {
@@ -175,7 +175,7 @@ void IOCAF2_DefaultInterruptHandler(void){
 void IOCAF4_ISR(void) {
 
     // Add custom IOCAF4 code
-
+    IO_RA5_Toggle();
     // Call the interrupt handler for the callback registered at runtime
     if(IOCAF4_InterruptHandler)
     {
