@@ -73,14 +73,14 @@ void main(void)
     {
         // Add your application code
         ADC1_Initialize();
-        /*
+        
         resultado = ADC1_GetConversion(channel_AN0);
         if (resultado > 0x8500) {
             IO_RA5_SetHigh();
         } else {
             IO_RA5_SetLow();
         }
-        */
+        
         /*
         resultado = ADC1_GetConversion(channel_AN0);
         if (resultado > 0x0A00) {
